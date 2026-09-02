@@ -47,123 +47,189 @@ SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
 --
--- Paste Question 1 here
+--Decrease the reorder level by 30 percent where the product name contains 'cream' and quantity in stock is higher than reorder level in the products table.
+
+PRODUCTS TABLE
+
+name type
+
+product_id INT product_name VARCHAR(100) category VARCHAR(50) cost_price DECIMAL(10,2) sell_price DECIMAL(10,2) reorder_lvl INT quantity INT supplier_id INT 
 
 ```sql
--- Paste your SQL code below for Question 1
+-- UPDATE products
+SET reorder_lvl = reorder_lvl * 0.70
+WHERE product_name LIKE '%cream%'
+  AND quantity > reorder_lvl;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1357" height="295" alt="636810802-1f385724-1337-4081-87c0-41e214da72c7" src="https://github.com/user-attachments/assets/2d5c91e1-72d4-45fa-9781-90caddc474d7" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+--Write a SQL statement to Update the grade of all customers in Chennai city as 5.
+
+Customer table (customer_id,cust_name,city,grade,salesman_id)
 
 ```sql
--- Paste your SQL code below for Question 2
+-- UPDATE Customer
+SET grade = 5
+WHERE city = 'Chennai';
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1220" height="365" alt="636810697-ab42a8e4-7101-4c6d-8fb5-36b7c17aa2a4" src="https://github.com/user-attachments/assets/8d9cdcda-a6a3-474c-8e7f-5353b4db060b" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+-- Write a SQL statement to Increase the selling price per unit by 5% for product ID 15 who's sale is on '2023-01-31'.
+
+sales(sale_id,sale_date,product_id,quantity,sell_price,total_sell_price)
 
 ```sql
--- Paste your SQL code below for Question 3
+-- UPDATE sales
+SET sell_price = sell_price * 1.05
+WHERE product_id = 15
+  AND sale_date = '2023-01-31';
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1335" height="358" alt="636810654-2887cd64-c7f7-416e-b739-3ee3a0f836e1" src="https://github.com/user-attachments/assets/505ec780-ad47-459a-9a45-c0c130941f05" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+--Update the 'Selling_Price' to add 10% extra margin for all products supplied by the supplier with id 6.
+
+PRODUCTS TABLE
+
+name type
+
+product_id INT product_name VARCHAR(100) category VARCHAR(50) cost_price DECIMAL(10,2) sell_price DECIMAL(10,2) reorder_lvl INT quantity INT supplier_id INT
 
 ```sql
--- Paste your SQL code below for Question 4
+--UPDATE Products
+SET sell_price = ROUND(sell_price + (sell_price * 10 / 100), 1)
+WHERE supplier_id = 6;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1298" height="317" alt="636810587-2f3db16e-a25b-4985-9420-cafaf583afa9" src="https://github.com/user-attachments/assets/f39666ec-923e-494b-9580-c6a795a07a90" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+--Write a SQL statement to Change the supplier name to 'A1 Suppliers' where the supplier ID is 8 in the suppliers table.
+
+Table info
+
+suppliers(supplier_id,supplier_name,contact_person,phone_number,email,address)
 
 ```sql
--- Paste your SQL code below for Question 5
+-- UPDATE suppliers
+SET supplier_name = 'A1 Suppliers'
+WHERE supplier_id = 8;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1557" height="332" alt="636810533-eeaf9c94-cbca-4249-a7f1-d1b07f93dbba" src="https://github.com/user-attachments/assets/81acda63-2c36-40e4-9960-7628b7b4601a" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+-- Write a SQL query to Delete a Specific Surgery whose ID is 3 or surgeon ID is 4.
+
+Sample table: Surgeries
 
 ```sql
--- Paste your SQL code below for Question 6
+-- DELETE FROM surgeries
+WHERE surgery_id = 3
+   OR surgeon_id = 4;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1055" height="661" alt="636810476-89db04f7-0a7c-4a5a-92f5-29cf43f005b0" src="https://github.com/user-attachments/assets/d3ab54cc-6885-4b10-ac32-a814d9564e59" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+-- Write a SQL query to Delete all Doctors whose Specialization is either 'Pediatrics' or 'Cardiology' and Last Name is Brown.
+
+Sample table: Doctors
+
+attributes : doctor_id, first_name, last_name, specialization
 
 ```sql
--- Paste your SQL code below for Question 7
+-- DELETE FROM doctors
+WHERE last_name = 'Brown'
+  AND specialization IN ('Pediatrics', 'Cardiology');
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1012" height="697" alt="636810430-0a16e52b-6850-4142-af93-ce75715bdca9" src="https://github.com/user-attachments/assets/7d3ca76b-329e-4a80-84b3-0e0dd3057542" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+--Write a SQL query to Delete customers from 'customer' table where 'AGENT_CODE' is either 'A003' or 'A008'.
+
+Sample table: Customer
+
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+|CUST_CODE | CUST_NAME | CUST_CITY | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO | AGENT_CODE | +-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+ | C00013 | Holmes | London | London | UK | 2 | 6000.00 | 5000.00 | 7000.00 | 4000.00 | BBBBBBB | A003 | | C00001 | Micheal | New York | New York | USA | 2 | 3000.00 | 5000.00 | 2000.00 | 6000.00 | CCCCCCC | A008 | | C00020 | Albert | New York | New York | USA | 3 | 500
 
 ```sql
--- Paste your SQL code below for Question 8
+-- DELETE FROM customer
+WHERE agent_code IN ('A003', 'A008');
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="600" height="802" alt="636810374-c1831606-533d-4ed1-adbe-f080ceaeffab" src="https://github.com/user-attachments/assets/02a984b1-b667-4b8c-b0a3-58e1760199d8" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+-- Write a SQL query to Delete customers with following conditions
+
+'CUST_COUNTRY' is not in a list of specified countries ('UK', 'USA', 'Canada') 'GRADE' is greater than or equal to 3
 
 ```sql
--- Paste your SQL code below for Question 9
+--DELETE FROM customer
+WHERE cust_country NOT IN ('UK', 'USA', 'Canada')
+  AND grade >= 3;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1763" height="270" alt="636810300-2fc90506-d131-490c-832e-bfcbf21a3c25" src="https://github.com/user-attachments/assets/d3f3ff31-804c-4fdb-bfba-f9a09b070f57" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+--Write a SQL query to Delete All Doctors with a NULL Specialization
+
+Sample table: Doctors
+
+attributes : doctor_id, first_name, last_name, specialization
 
 ```sql
--- Paste your SQL code below for Question 10
+--DELETE FROM doctors
+WHERE specialization IS NULL;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1073" height="737" alt="636810157-6a22c094-d016-4771-af71-004bd87f8df7" src="https://github.com/user-attachments/assets/1aff5004-ef25-4276-a698-085d6e61774a" />
 
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
