@@ -104,124 +104,231 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
 
-```sql
--- Paste your SQL code below for Question 1
+Insert a book with ISBN 978-1234567890, Title Data Science Essentials, Author Jane Doe, Publisher TechBooks, and Year 2024 into the Books table.
+
+sql
+```
+INSERT INTO Books (ISBN, Title, Author, Publisher, Year)
+VALUES ('978-1234567890', 'Data Science Essentials', 'Jane Doe', 'TechBooks', 2024);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1212" height="287" alt="image" src="https://github.com/user-attachments/assets/e2610c27-22c8-4d9e-9133-a84cacb64806" />
+
 
 **Question 2**
----
--- Paste Question 2 here
 
-```sql
--- Paste your SQL code below for Question 2
+Create a table named Orders with the following constraints:
+OrderID as INTEGER should be the primary key.
+OrderDate as DATE should be not NULL.
+CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
+
+sql
+```
+CREATE TABLE Orders (
+    OrderID INTEGER PRIMARY KEY,
+    OrderDate DATE NOT NULL,
+    CustomerID INTEGER,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1228" height="290" alt="image" src="https://github.com/user-attachments/assets/b604862d-d57d-49d7-97fe-e58c52b4d16e" />
+
 
 **Question 3**
----
--- Paste Question 3 here
 
-```sql
--- Paste your SQL code below for Question 3
+Insert all students from Archived_students table into the Student_details table.
+
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           RollNo      INT           0                       1
+1           Name        VARCHAR(100)  0                       0
+2           Gender      VARCHAR(10)   0                       0
+3           Subject     VARCHAR(50)   0                       0
+4           MARKS       INT           0                       0
+
+
+sql
+```
+INSERT INTO Student_details (RollNo, Name, Gender, Subject, MARKS)
+SELECT RollNo, Name, Gender, Subject, MARKS
+FROM Archived_students;
+
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1231" height="295" alt="image" src="https://github.com/user-attachments/assets/f31a494a-6c81-4f9c-b52b-6106a6127080" />
+
 
 **Question 4**
----
--- Paste Question 4 here
 
-```sql
--- Paste your SQL code below for Question 4
+Create a table named ProjectAssignments with the following constraints:
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL
+
+sql
+```
+CREATE TABLE ProjectAssignments (
+    AssignmentID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    ProjectID INTEGER,
+    AssignmentDate DATE NOT NULL,
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
+    FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1238" height="321" alt="image" src="https://github.com/user-attachments/assets/cdb2534c-7eda-4bb2-87c0-88c5da155d0c" />
+
 
 **Question 5**
----
--- Paste Question 5 here
 
-```sql
--- Paste your SQL code below for Question 5
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
+
+sql
+```
+CREATE TABLE contacts (
+    contact_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT NOT NULL CHECK (LENGTH(phone) >= 10)
+);
+
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1211" height="370" alt="image" src="https://github.com/user-attachments/assets/b9e0377d-9a24-4eaf-b466-fe9a6338cc44" />
+
 
 **Question 6**
----
--- Paste Question 6 here
 
-```sql
--- Paste your SQL code below for Question 6
+In the Cusomers table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+
+CustomerID  Name          Address      City        ZipCode
+----------  ------------  ----------   ----------  ----------
+306         Diana Prince  Themyscira
+307         Bruce Wayne   Wayne Manor  Gotham      10007
+308         Peter Parker  Queens                   11375
+
+ 
+sql
+```
+INSERT INTO Customers (CustomerID, Name, Address, City, ZipCode)
+VALUES 
+(306, 'Diana Prince', 'Themyscira', NULL, NULL),
+(307, 'Bruce Wayne', 'Wayne Manor', 'Gotham', '10007'),
+(308, 'Peter Parker', 'Queens', NULL, '11375');
+
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1202" height="285" alt="image" src="https://github.com/user-attachments/assets/81c6d6d0-e4a2-4dc0-8ef6-e9fa6de5df31" />
+
 
 **Question 7**
----
--- Paste Question 7 here
 
-```sql
--- Paste your SQL code below for Question 7
+Create a table named Departments with the following columns:
+
+DepartmentID as INTEGER
+DepartmentName as TEXT
+
+sql
+```
+CREATE TABLE Departments (
+    DepartmentID INTEGER,
+    DepartmentName TEXT
+);
+
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1217" height="401" alt="image" src="https://github.com/user-attachments/assets/de1bd52f-c3a0-493e-87ff-48321460dee3" />
+
 
 **Question 8**
----
--- Paste Question 8 here
 
-```sql
--- Paste your SQL code below for Question 8
+Create a table named Products with the following constraints:
+
+ProductID should be the primary key.
+ProductName should be NOT NULL.
+Price is of real datatype and should be greater than 0.
+Stock is of integer datatype and should be greater than or equal to 0
+
+sql
+```
+CREATE TABLE Products (
+    ProductID INTEGER PRIMARY KEY,
+    ProductName TEXT NOT NULL,
+    Price REAL CHECK (Price > 0),
+    Stock INTEGER CHECK (Stock >= 0)
+);
+
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1272" height="327" alt="image" src="https://github.com/user-attachments/assets/1adfb682-8820-4760-be35-ccdb04cbfd45" />
+
 
 **Question 9**
----
--- Paste Question 9 here
 
-```sql
--- Paste your SQL code below for Question 9
+Write an SQL query to add a new column salary of type INTEGER to the Employees table, with a CHECK constraint that ensures the value in this column is greater than 0.
+
+
+sql
+```
+ALTER TABLE Employees
+ADD COLUMN salary INTEGER CHECK (salary > 0);
+
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1188" height="295" alt="image" src="https://github.com/user-attachments/assets/211741c2-5d71-4832-9e66-b8bffe00d669" />
+
 
 **Question 10**
----
--- Paste Question 10 here
 
-```sql
--- Paste your SQL code below for Question 10
+Write a SQL query to Add a new column named "discount" with the data type DECIMAL(5,2) to the "customer" table.
+
+Sample table: customer
+
+ customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+
+sql
+```
+ALTER TABLE customer
+ADD COLUMN discount DECIMAL(5,2);
+
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1212" height="401" alt="image" src="https://github.com/user-attachments/assets/ca8afd20-585c-4b41-a0c4-ac70fe79be4c" />
 
 
 ## RESULT
